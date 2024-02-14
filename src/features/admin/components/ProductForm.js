@@ -213,7 +213,7 @@ function ProductForm() {
                 </p>
               </div>
 
-              <div className="col-span-full">
+              {/* { <div className="col-span-full">
                 <label
                   htmlFor="brand"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -234,7 +234,7 @@ function ProductForm() {
                     ))}
                   </select>
                 </div>
-              </div>
+              </div> } */}
 
               <div className="col-span-full">
                 <label
@@ -280,7 +280,7 @@ function ProductForm() {
                 </div>
               </div>
 
-              <div className="col-span-full">
+              {/* <div className="col-span-full">
                 <label
                   htmlFor="category"
                   className="block text-sm font-medium leading-6 text-gray-900"
@@ -301,7 +301,7 @@ function ProductForm() {
                     ))}
                   </select>
                 </div>
-              </div>
+              </div> */}
 
               <div className="sm:col-span-2">
                 <label

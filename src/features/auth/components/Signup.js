@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
+import { useState } from 'react';
+import { FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import { selectLoggedInUser, createUserAsync } from '../authSlice';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
@@ -14,7 +15,10 @@ export default function Signup() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const [isChecked, setIsChecked] = useState(false);
+  const toggleSwitch = () => {
+    setIsChecked((prevState) => !prevState);
+  }
 
   return (
     <>
@@ -30,8 +34,15 @@ export default function Signup() {
             Create a New Account
           </h2>
         </div>
-
+        
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className='hover:cursor-pointer'>Signup as an admin
+      {isChecked ? (
+        <FaToggleOn onClick={toggleSwitch} size={30} color="#433ED9"/>
+      ) : (
+        <FaToggleOff onClick={toggleSwitch} size={30} />
+      )}
+    </div>
           <form
             noValidate
             className="space-y-6"
@@ -41,7 +52,7 @@ export default function Signup() {
                   email: data.email,
                   password: data.password,
                   addresses: [],
-                  role:'user'
+                  role: isChecked ? 'admin' : 'user'
                 })
               );
               console.log(data);
@@ -89,7 +100,7 @@ export default function Signup() {
                     required: 'password is required',
                     pattern: {
                       value:
-                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                        /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[a-zA-Z]).{8,}$/gm,
                       message: `- at least 8 characters\n
                       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
                       - Can contain special characters`,
